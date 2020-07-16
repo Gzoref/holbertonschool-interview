@@ -11,11 +11,12 @@ def canUnlockAll(boxes):
     Return True if can be open, false if not
     """
     number_of_keys = [0]
+    number_of_boxes = len(boxes)
 
     for keys in number_of_keys:
         for box in boxes[keys]:
-            if box not in number_of_keys:
+            if box < len(boxes) and box not in number_of_keys:
                 number_of_keys.append(box)
-    if len(number_of_keys) == len(boxes):
+    if len(number_of_keys) == number_of_boxes:
         return True
     return False
