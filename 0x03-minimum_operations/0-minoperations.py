@@ -12,7 +12,7 @@ def minOperations(n):
     returns min operations to get n Hs
     '''
     result = 0
-    if n < 2:
+    if n < 2 or type(n) is not int:
         return 0
     for i in range(2, n):
         # Check if problem is evenly brekadownable
