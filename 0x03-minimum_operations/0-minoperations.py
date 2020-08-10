@@ -12,9 +12,9 @@ def minOperations(n):
     returns min operations to get n Hs
     '''
     result = 0
-    if type(n) is not int or n < 2:
+    if n < 2:
         return 0
-    for i in range(2, n):
+    for i in range(2, n + 1):
         # Check if problem is evenly brekadownable
         while n % i == 0:
             # If so add number of smaller problems to the result
