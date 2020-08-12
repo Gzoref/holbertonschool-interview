@@ -12,14 +12,15 @@ def minOperations(n):
     returns min operations to get n Hs
     '''
     result = 0
+    index = 2
     if n < 2:
         return 0
-    for i in range(2, n + 1):
+    while (index < n + 1):
         # Check if problem is evenly brekadownable
-        while n % i == 0:
+        while n % index == 0:
             # If so add number of smaller problems to the result
-            result += i
+            result += index
             # Create the smaller problem needed to get to n
-            n /= i
-        i += 1
+            n /= index
+        index += 1
     return result
