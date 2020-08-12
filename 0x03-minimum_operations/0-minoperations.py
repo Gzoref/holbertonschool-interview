@@ -21,4 +21,5 @@ def minOperations(n):
             result += i
             # Create the smaller problem needed to get to n
             n /= i
+        i += 1
     return result
