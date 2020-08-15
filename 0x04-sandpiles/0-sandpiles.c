@@ -7,10 +7,11 @@
 *
 * Return: Void
 */
-void _print_grid(int grid[3][3])
+void print_grid(int grid[3][3])
 {
 	int i, j;
 
+	printf("=\n");
 	for (i = 0; i < 3; i++)
 	{
 		for (j = 0; j < 3; j++)
@@ -21,6 +22,30 @@ void _print_grid(int grid[3][3])
 		}
 		printf("\n");
 	}
+}
+
+/**
+* is_stable - Check if square has more than 3 grains
+*
+* @grid: 3 x 3 grid
+*
+* Return: 0 if stable, 1 if unstable
+*/
+int is_stable(int grid[3][3])
+{
+	int i, j;
+
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			if (grid[i][j] > 3)
+			{
+				return (0);
+			}
+		}
+	}
+	return (1);
 }
 
 /**
@@ -42,32 +67,50 @@ void topple(int grid1[3][3], int grid2[3][3])
 		{
 			if (grid1[i][j] > 3)
 			{
-				/* Partion grain up */
-				if (i - 1 >= 0 && i < 3)
+				if (i > 0)
 				{
 					grid2[i - 1][j]++;
 				}
-				/* Partion grain down */
-				if (i + 1 >= 0 && i + 1 < 3)
+				if (i < 2)
 				{
-					grid2[i + 1][j]++;
+					grid1[i + 1][j]++;
 				}
 
-				/* Partion grain left */
-				if (j - 1 >= 0 && j - 1 < 3)
+				if (j > 0)
 				{
-					grid2[i][j - 1]++;
+					grid1[i][j - 1]++;
 				}
 
-				/* Partion grain right */
-				if (j + 1 >= 0 && j + 1 < 3)
+				if (j < 2)
 				{
-					grid2[i][j + 1]++;
+					grid1[i][j + 1]++;
 				}
-
-				/* Partition grain off the board */
-				grid2[i][j] -= 4;
+				grid1[i][j] -= 4;
 			}
+		}
+	}
+	add_sandpile(grid1, grid2);
+}
+
+/**
+* add_sandpile - Add two 3 x 3 grid sandpiles
+*
+* @grid1: 3 x 3 board
+*
+* @grid2: 3 x 3 board
+*
+* Return: Return value
+*/
+void add_sandpile(int grid1[3][3], int grid2[3][3])
+{
+	int i, j;
+
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			grid1[i][j] += grid2[i][j];
+			grid2[i][j] = 0;
 		}
 	}
 }
@@ -89,8 +132,14 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 	{
 		for (j = 0; j < 3; j++)
 		{
-			/* Sum grid1 and grid2 */
 			grid1[i][j] += grid2[i][j];
+			grid2[i][j] = 0;
 		}
+	}
+	add_sandpile(grid1, grid2);
+	while (!is_stable(grid1))
+	{
+		print_grid(grid1);
+		topple(grid1, grid2);
 	}
 }
