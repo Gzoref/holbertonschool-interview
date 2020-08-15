@@ -23,30 +23,6 @@ void print_grid(int grid[3][3])
 	}
 }
 
-/**
-* is_stable - Checks if square has more than 3 grains of sand
-*
-* @grid1: 3 x 3 board
-*
-* Return: 1 if unstable, 0 if stable
-*/
-int is_stable(int grid1[3][3])
-{
-	int i, j;
-
-	for (i = 0; i < 3; i++)
-	{
-		for (j = 0; j < 3; j++)
-		{
-			/* If square has more than 3 grains return 1 */
-			if (grid1[i][j] > 3)
-			{
-				return (1);
-			}
-		}
-	}
-		return (0);
-}
 
 /**
 * topple - Partitions grains from squares greater than 3
@@ -65,7 +41,7 @@ void topple(int grid1[3][3], int grid2[3][3])
 	{
 		for (j = 0; j < 3; j++)
 		{
-			if (is_stable(grid1[i][j]))
+			if (grid1[i][j] > 3)
 			{
 				/* Partion grain up */
 				if (i - 1 >= 0 && i < 3)
