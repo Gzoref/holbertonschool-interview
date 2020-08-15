@@ -7,7 +7,7 @@
 *
 * Return: Void
 */
-void print_grid(int grid[3][3])
+void _print_grid(int grid[3][3])
 {
 	int i, j;
 
@@ -22,7 +22,6 @@ void print_grid(int grid[3][3])
 		printf("\n");
 	}
 }
-
 
 /**
 * topple - Partitions grains from squares greater than 3
