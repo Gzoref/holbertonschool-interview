@@ -9,16 +9,16 @@
 */
 void print_grid(int grid[3][3])
 {
-	int i, j;
+	int row, col;
 
 	printf("=\n");
-	for (i = 0; i < 3; i++)
+	for (row = 0; row < 3; row++)
 	{
-		for (j = 0; j < 3; j++)
+		for (col = 0; col < 3; col++)
 		{
-			if (j)
+			if (col)
 				printf(" ");
-			printf("%d", grid[i][j]);
+			printf("%d", grid[row][col]);
 		}
 		printf("\n");
 	}
@@ -33,13 +33,13 @@ void print_grid(int grid[3][3])
 */
 int is_stable(int grid[3][3])
 {
-	int i, j;
+	int row, col;
 
-	for (i = 0; i < 3; i++)
+	for (row = 0; row < 3; row++)
 	{
-		for (j = 0; j < 3; j++)
+		for (col = 0; col < 3; col++)
 		{
-			if (grid[i][j] > 3)
+			if (grid[row][col] > 3)
 			{
 				return (0);
 			}
@@ -59,33 +59,40 @@ int is_stable(int grid[3][3])
 */
 void topple(int grid1[3][3], int grid2[3][3])
 {
-	int i, j;
+	int row, col;
 
-	for (i = 0; i < 3; i++)
+	for (row = 0; row < 3; row++)
 	{
-		for (j = 0; j < 3; j++)
+		for (col = 0; col < 3; col++)
 		{
-			if (grid1[i][j] > 3)
+			if (grid1[row][col] > 3)
 			{
-				if (i > 0)
+				/* Send one grain of sand up */
+				if (row > 0)
 				{
-					grid2[i - 1][j]++;
-				}
-				if (i < 2)
-				{
-					grid1[i + 1][j]++;
+					grid2[row - 1][col]++;
 				}
 
-				if (j > 0)
+				/* Send one grain of sand down */
+				if (row < 2)
 				{
-					grid1[i][j - 1]++;
+					grid1[row + 1][col]++;
 				}
 
-				if (j < 2)
+				/* Send one grain of sand left */
+				if (col > 0)
 				{
-					grid1[i][j + 1]++;
+					grid1[row][col - 1]++;
 				}
-				grid1[i][j] -= 4;
+
+				/* Send one grain of sand right */
+				if (col < 2)
+				{
+					grid1[row][col + 1]++;
+				}
+
+				/* Send one grain of sand off the grid */
+				grid1[row][col] -= 4;
 			}
 		}
 	}
@@ -103,14 +110,15 @@ void topple(int grid1[3][3], int grid2[3][3])
 */
 void add_sandpile(int grid1[3][3], int grid2[3][3])
 {
-	int i, j;
+	int row, col;
 
-	for (i = 0; i < 3; i++)
+	for (row = 0; row < 3; row++)
 	{
-		for (j = 0; j < 3; j++)
+		for (col = 0; col < 3; col++)
 		{
-			grid1[i][j] += grid2[i][j];
-			grid2[i][j] = 0;
+			grid1[row][col] += grid2[row][col];
+			grid2[row][col] = 0;
+			//memset(grid2, 0, sizeof(int) * 9);
 		}
 	}
 }
@@ -126,14 +134,14 @@ void add_sandpile(int grid1[3][3], int grid2[3][3])
 */
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
-	int i, j;
+	int row, col;
 
-	for (i = 0; i < 3; i++)
+	for (row = 0; row < 3; row++)
 	{
-		for (j = 0; j < 3; j++)
+		for (col = 0; col < 3; col++)
 		{
-			grid1[i][j] += grid2[i][j];
-			grid2[i][j] = 0;
+			grid1[row][col] += grid2[row][col];
+			grid2[row][col] = 0;
 		}
 	}
 	add_sandpile(grid1, grid2);
