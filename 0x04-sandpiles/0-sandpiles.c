@@ -118,7 +118,6 @@ void add_sandpile(int grid1[3][3], int grid2[3][3])
 		{
 			grid1[row][col] += grid2[row][col];
 			grid2[row][col] = 0;
-			//memset(grid2, 0, sizeof(int) * 9);
 		}
 	}
 }
