@@ -62,36 +62,38 @@ void topple(int grid1[3][3], int grid2[3][3])
 	int row, col;
 
 	for (row = 0; row < 3; row++)
+	{
 		for (col = 0; col < 3; col++)
-				if (grid1[row][col] > 3)
+		{
+			if (grid1[row][col] > 3)
+			{
+				/* Send one grain of sand off the grid */
+				grid2[row][col] -= 4;
+				/* Send one grain of sand up */
+				if (row - 1 >= 0)
 				{
-					/* Send one grain of sand off the grid */
-					grid2[row][col] -= 4;
-				
-					/* Send one grain of sand up */
-					if (row - 1 >= 0)
-					{
-						grid2[row - 1][col]++;
-					}
+					grid2[row - 1][col]++;
+				}
+				/* Send one grain of sand down */
+				if (row + 1 <= 2)
+				{
+					grid2[row + 1][col]++;
+				}
 
-					/* Send one grain of sand down */
-					if (row + 1 <= 2)
-					{
-						grid2[row + 1][col]++;
-					}
+				/* Send one grain of sand left */
+				if (col - 1 >= 0)
+				{
+					grid2[row][col - 1]++;
+				}
 
-					/* Send one grain of sand left */
-					if (col - 1 >= 0)
-					{
-						grid2[row][col - 1]++;
-					}
-
-					/* Send one grain of sand right */
-					if (col + 1 <= 2)
-					{
-						grid2[row][col + 1]++;
-					}
-			}		
+				/* Send one grain of sand right */
+				if (col + 1 <= 2)
+				{
+					grid2[row][col + 1]++;
+				}
+			}
+		}
+	}
 	add_sandpile(grid1, grid2);
 }
 
