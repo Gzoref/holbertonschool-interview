@@ -1,41 +1,46 @@
 #!/usr/bin/python3
 
+import sys
 
 '''
 Reads stdin line by line and computes metrics
+like file size
 '''
-import sys
 
-status_code = {
-    '200': 0, '301': 0, '400': 0, '401': 0,
-    '403': 0, '404': 0, '405': 0, '500': 0
-}
+if __name__ == "__main__":
 
-file_size = 0
-count = 0
+    status_codes = {200: 0, 301: 0,
+                    400: 0, 401: 0,
+                    403: 0, 404: 0,
+                    405: 0, 500: 0}
 
+    file_size = [0]
 
-def print_log():
-    '''
-    Print log stats
-    '''
-    print('File size: ' + str(file_size))
-    for line in status_code:
-        if status_code[line] != 0:
-            print(line + ': ' + str(status_code[line]))
+    def check_wordmatch(line):
+        try:
+            line = line[:-1]
+            words = line.split(" ")
+            file_size[0] += int(words[-1])
+            code = int(words[-2])
+            if code in status_codes:
+                status_codes[code] += 1
+        except BaseException:
+            pass
 
+    def print_computed_metric():
+        print("File size: {}".format(file_size[0]))
+        for k in sorted(status_codes.keys()):
+            if status_codes[k]:
+                print("{}: {}".format(k, status_codes[k]))
 
-try:
-    for line in sys.stdin:
-        result = line.split()
-        if len(result) > 2:
-            file_size += result[-1]
-            status_code[int(result[-2])] += 1
+    count = 1
+    try:
+        for line in sys.stdin:
+            check_wordmatch(line)
+            if count % 10 == 0:
+                print_computed_metric()
             count += 1
-        if count == 10:
-            print_log()
-            count = 0
-            else:
-                count += 1
-except KeyboardInterrupt:
-    print_log()
+    except KeyboardInterrupt:
+        print_computed_metric()
+        raise
+    print_computed_metric()
