@@ -19,8 +19,9 @@ if __name__ == "__main__":
         print('File size: {}'.format(file_size[0]))
 
         for code in sorted(status_codes.keys()):
-            if status_codes[code] != 0:
-                print('{}: {}', format(status_codes, status_codes[code]))
+            if status_codes[code]:
+                print('{}: {}'.format(status_codes, status_codes[code]))
+            
 
     def parse_stdin(line):
         '''
@@ -33,20 +34,19 @@ if __name__ == "__main__":
             file_size[0] += int(word[-1])
             # Status code comes before file size
             status_code = int(word[-2])
-			# Move through dictionary of status codes
+            # Move through dictionary of status codes
             if status_code in status_codes:
                 status_codes[status_code] += 1
-        except:
+        except BaseException:
             pass
 
     try:
         for line in sys.stdin:
             parse_stdin(line)
-			# print the stats after every 10 outputs
+            # print the stats after every 10 outputs
 
             if count % 10 == 0:
                 print_stats()
             count += 1
     except KeyboardInterrupt:
         print_stats()
-     
