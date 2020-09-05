@@ -7,8 +7,8 @@ import sys
 
 if __name__ == "__main__":
 
-    status_codes = {'200': 0, '301': 0, '400': 0, '401': 0,
-                    '403': 0, '404': 0, '405': 0, '500': 0}
+    status_codes = {200: 0, 301: 0, 400: 0, 401: 0,
+                    403: 0, 404: 0, 405: 0, 500: 0}
     file_size = [0]
     count = 1
 
@@ -19,9 +19,8 @@ if __name__ == "__main__":
         print('File size: {}'.format(file_size[0]))
 
         for code in sorted(status_codes.keys()):
-            if status_codes[code]:
-                print('{}: {}'.format(status_codes, status_codes[code]))
-            
+            if status_codes[code] != 0:
+                print('{}: {}'.format(code, status_codes[code]))
 
     def parse_stdin(line):
         '''
@@ -44,9 +43,10 @@ if __name__ == "__main__":
         for line in sys.stdin:
             parse_stdin(line)
             # print the stats after every 10 outputs
-
             if count % 10 == 0:
                 print_stats()
             count += 1
     except KeyboardInterrupt:
         print_stats()
+        raise
+    print_stats()
