@@ -11,13 +11,9 @@
 
 int is_palindrome(unsigned long n)
 {
-	int remainder = 0;
+	int remainder;
 	unsigned long reverse = 0;
-
-	if (n <= 9)
-	{
-		return (1);
-	}
+	unsigned long temp = n;
 
 	while (n > 0)
 	{
@@ -25,15 +21,16 @@ int is_palindrome(unsigned long n)
 		remainder = n % 10;
 
 		/* Build up reverse by * 10 to move digit's place by 1*/
-		reverse = reverse * 10 + remainder;
+		reverse = (reverse * 10) + remainder;
 
 		/* Remove last digit each loop until n is 0 */
 		n /= 10;
 
-		if (n == reverse)
+		if (reverse == temp)
 		{
 			return (1);
 		}
 	}
+
 	return (0);
 }
