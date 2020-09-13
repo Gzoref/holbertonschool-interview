@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
-* _is_palindrome - Checks if number is a palindrome
+* is_palindrome - Checks if number is a palindrome
 *
 * @n: Number to check
 *
@@ -11,7 +11,6 @@
 
 int is_palindrome(unsigned long n)
 {
-	/* int num_length = 0; */
 	int remainder = 0;
 	unsigned long reverse = 0;
 
@@ -22,14 +21,14 @@ int is_palindrome(unsigned long n)
 
 		/* Build up reverse by * 10 to move digit's place by 1*/
 		reverse = reverse * 10 + remainder;
-		
+
 		/* Remove last digit each loop until n is 0 */
 		n /= 10;
-	
+
 		if (n == reverse)
 		{
 			return (1);
-		}	
+		}
 	}
 	return (0);
 }
