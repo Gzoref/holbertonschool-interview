@@ -14,7 +14,7 @@ int is_palindrome(unsigned long n)
 	int remainder = 0;
 	unsigned long reverse = 0;
 
-	if (n < 9)
+	if (n <= 9)
 	{
 		return (1);
 	}
