@@ -11,11 +11,11 @@
 
 int is_palindrome(unsigned long n)
 {
-	int remainder;
+	int remainder = 0;
 	unsigned long reverse = 0;
 	unsigned long temp = n;
 
-	while (n > 0)
+	while (n != 0)
 	{
 		/* Get last digit in n */
 		remainder = n % 10;
@@ -25,11 +25,10 @@ int is_palindrome(unsigned long n)
 
 		/* Remove last digit each loop until n is 0 */
 		n /= 10;
-
-		if (reverse == temp)
-		{
-			return (1);
-		}
+	}
+	if (reverse == temp)
+	{
+		return (1);
 	}
 
 	return (0);
