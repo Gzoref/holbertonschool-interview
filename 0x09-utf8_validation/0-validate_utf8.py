@@ -5,38 +5,30 @@ Determines if a given data set represents a valid UTF-8 encoding.
 '''
 
 def validUTF8(data):
-	return 
+	num_bytes = 0
 
+	# Least significant 8 bits
+	for number in data:
+		binary_rep = format(number, '#010b')[-8:]
+	
+	# If valid
+	if num_bytes == 0:
+		# How many 1s at beginning
+		for bit in binary_rep:
+			if bit == '0':
+				break
+			num_bytes += 1
 
+			if num_bytes == 0:
+				continue
 
-'''
-Char. number range  |        UTF-8 octet sequence
-      (hexadecimal)    |              (binary)
-   --------------------+---------------------------------------------
-   0000 0000-0000 007F | 0xxxxxxx
-   0000 0080-0000 07FF | 110xxxxx 10xxxxxx
-   0000 0800-0000 FFFF | 1110xxxx 10xxxxxx 10xxxxxx
-   0001 0000-0010 FFFF | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+			#invalid
+			if num_bytes == 1 or num_bytes > 4:
+				return False
+			else:
+				if not (binary_rep[0] == '1' and binary_rep[1] == '0'):
+					return False
 
- 0   0  0  0  0  0  0  0
-128  64 32 16 8  4  2  1
+			num_bytes -= 1
 
-< 128 
-01100001 65 A
-
-> 128
-
-2 bytes:
-
-1 1 0 x x x x x  1 0 x x x x x x 
-      0 0 1 1 0      1 1 0 0 1 0
-			\           /
-	    0 0 1 1 0 1 1 0 0 1 0
-
-3 bytes:
-1 1 1 x x x x x  1 0 0 x x x x x  1 0 0 x x x x x
-          \              |             /
-	   0 0 1 0 0		0 0 0 0 1       0 1 0 1 0
-	        \             |                /
-			 0 0 1 0 0 0  0 0 0 1 0 1 0 1 0
-'''
+	return num_bytes == 0
