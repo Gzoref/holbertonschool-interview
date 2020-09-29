@@ -107,5 +107,5 @@ int slide_line(int *line, size_t size, int direction)
 		slide_right(line, size);
 		return (1);
 	}
-	return 0;
+	return (0);
 }
