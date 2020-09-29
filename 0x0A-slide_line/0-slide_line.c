@@ -98,10 +98,10 @@ int slide_line(int *line, size_t size, int direction)
 
 		for (index = size - 1; index > 0; index--)
 		{
-			if (line[index] == line[index + 1])
+			if (line[index] == line[index - 1])
 			{
-				line[index] += line[index + 1];
-				line[index + 1] = 0;
+				line[index] += line[index - 1];
+				line[index - 1] = 0;
 			}
 		}
 		slide_right(line, size);
