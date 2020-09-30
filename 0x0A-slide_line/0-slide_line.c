@@ -1,3 +1,4 @@
+
 #include "slide_line.h"
 
 /**
@@ -85,6 +86,21 @@ int slide_line(int *line, size_t size, int direction)
 			if (line[index] == line[index + 1])
 			{
 				line[index] += line[index + 1];
+				line[index + 1] = 0;
+			}
+		}
+		slide_left(line, size);
+		return (1);
+
+	} else if (direction == SLIDE_RIGHT)
+	{
+		slide_left(line, size);
+
+		for ( index = 0; index < size; index++)
+		{
+			if (line[index] == line[index - 1])
+			{
+				line[index] = line[index] + line[index];
 				line[index + 1] = 0;
 			}
 		}
