@@ -93,7 +93,8 @@ int slide_line(int *line, size_t size, int direction)
 	} else if (direction == SLIDE_RIGHT)
 	{
 		slide_right(line, size);
-		for (i = size - 1;  i >= 0; i--)
+
+		for (i = size - 1;  (int)i >= 0; i--)
 		{
 			if (line[i] == line[i - 1])
 			{
