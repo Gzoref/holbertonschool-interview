@@ -11,15 +11,35 @@
 void menger(int level)
 {
 
-	int size = level * 3;
+	int row, col, _row, _col;
+	int size = pow(3, level);
+	char character;
 
 	if (level < 0)
 	{
 		return;
 	}
 
-	if (level == 0)
+	for (row = 0; row < size; row++)
 	{
-		printf("#");
+		for (col = 0; col < size; col++)
+		{
+			_row = row;
+			_col = col;
+
+			character = '#';
+
+			while (_row || _col)
+			{
+				if (_row % 3 == 1 && _col % 3 == 1)
+				{
+					character = ' ';
+				}
+				_row /= 3;
+				_col /= 3;
+			}
+			putchar(character);
+		}
+	putchar('\n');
 	}
 }
