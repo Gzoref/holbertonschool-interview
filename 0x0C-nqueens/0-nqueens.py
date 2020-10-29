@@ -3,11 +3,10 @@
 '''
 N queens
 '''
-
 from sys import argv
 
 
-def is_NQueen(cell: list) -> bool:
+def is_NQueen(cell: List[int]) -> bool:
     '''
     True if N Queen, False if not
     '''
@@ -22,7 +21,7 @@ def is_NQueen(cell: list) -> bool:
     return True
 
 
-def solve_NQeens(dimension: int, row: int, cell: list, outcome: list) -> list:
+def solve_NQeens(dimension: int, row: int, cell: list, outcome: list):
     """
     Return result of N Queens recusrivley
     """
@@ -51,6 +50,6 @@ if N < 4:
     print('N must be at least 4')
     exit(1)
 else:
-    outcome = []
+    outcome: list = []
     cell = 0
     solve_NQeens(int(N), cell, [], outcome)
