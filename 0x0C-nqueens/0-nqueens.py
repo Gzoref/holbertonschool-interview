@@ -3,6 +3,7 @@
 '''
 N queens
 '''
+from typing import List
 from sys import argv
 
 
