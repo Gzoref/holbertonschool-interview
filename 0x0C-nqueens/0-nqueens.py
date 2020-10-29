@@ -51,6 +51,6 @@ if N < 4:
     print('N must be at least 4')
     exit(1)
 else:
-    outcome: list = []
+    outcome = []
     cell = 0
     solve_NQeens(int(N), cell, [], outcome)
