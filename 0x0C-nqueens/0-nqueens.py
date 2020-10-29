@@ -3,11 +3,11 @@
 '''
 N queens
 '''
-from typing import List
+
 from sys import argv
 
 
-def is_NQueen(cell: List[int]) -> bool:
+def is_NQueen(cell: list) -> bool:
     '''
     True if N Queen, False if not
     '''
