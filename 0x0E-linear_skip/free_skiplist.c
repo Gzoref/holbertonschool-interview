@@ -17,4 +17,3 @@ void free_skiplist(skiplist_t *list)
 		free_skiplist(node);
 	}
 }
-©

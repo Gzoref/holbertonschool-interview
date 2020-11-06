@@ -22,4 +22,8 @@ typedef struct skiplist_s
 	struct skiplist_s *express;
 	} skiplist_t;
 
+	skiplist_t *linear_skip(skiplist_t *list, int value);
+	skiplist_t *node_index(skiplist_t *list, skiplist_t *current, int value);
+
+
 #endif /* SEARCH_H */
