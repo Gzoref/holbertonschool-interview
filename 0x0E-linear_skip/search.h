@@ -1,3 +1,6 @@
+#ifndef SEARCH_H
+#define SEARCH_H
+
 #include <stdio.h>
 
 /**
@@ -13,8 +16,10 @@
  */
 typedef struct skiplist_s
 {
-    int n;
-    size_t index;
-    struct skiplist_s *next;
-    struct skiplist_s *express;
-} skiplist_t;
+	int n;
+	size_t index;
+	struct skiplist_s *next;
+	struct skiplist_s *express;
+	} skiplist_t;
+
+#endif /* SEARCH_H */
