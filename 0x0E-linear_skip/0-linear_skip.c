@@ -14,7 +14,7 @@ skiplist_t *node_index(skiplist_t *list, skiplist_t *current, int value)
 
 	while (list && list->index <= current->index)
 	{
-		printf("Value checked at index [%ld] = [%d]\n", current->index, current->n);
+		printf("Value checked at index [%ld] = [%d]\n", list->index, list->n);
 
 		if (list->n == value)
 		{
@@ -48,7 +48,7 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 	}
 
 	current = list;
-
+	/* In the express lane... */
 	while (current->express)
 	{
 		previous = current;
@@ -56,7 +56,7 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 		current_index = current->index;
 		previous_index = previous->index;
 
-		printf("Value found between indexes [%ld] and [%d]\n",
+		printf("Value checked at index [%ld] = [%d]\n",
 						current_index, current->n);
 
 		if (previous->n > value && previous->index == 0)
