@@ -1,5 +1,8 @@
 #include "search.h"
 
+
+skiplist_t *linear_skip(skiplist_t *list, int value);
+
 /**
 * node_index - Finds the index of the node
 * @list: A pointer to teh head of the skip list
