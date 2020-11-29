@@ -26,3 +26,7 @@
 ### [0x0F-starwars_api](./0x0F-starwars_api)
 ### [0x10-rain](./0x10-rain)
 ### [0x11-heap_sort](./0x11-heap_sort)
+
+
+## Author
+ Geoffrey Zoref - [Geoffrey Zoref](https://github.com/gzoref)
