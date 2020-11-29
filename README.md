@@ -25,3 +25,4 @@
 ### [0x0E-linear_skip](./0x0E-linear_skip)
 ### [0x0F-starwars_api](./0x0F-starwars_api)
 ### [0x10-rain](./0x10-rain)
+### [0x11-heap_sort](./0x11-heap_sort)
